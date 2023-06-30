@@ -1,0 +1,45 @@
+enovia-attributes:
+ basic:
+  - owner
+  - modified
+  - originated
+  - id
+  - physicalid
+ vpmreference:
+  - PLMEntity.V_Name
+ vpmrepreference:
+ catpart:
+  - EBMCoating
+  - EBMDiameter
+  - EBMEspritNode
+  - EBMHeatTreatment
+  - EBMHeight
+  - EBMIdentNumber
+  - EBMIsMethodPlan
+  - EBMIsStandartPart
+  - EBMLength
+  - EBMMass
+  - EBMMaterialCode
+  - EBMOrderNumber
+  - EBMPreviousOwner
+  - EBMProjectNumber
+  - EBMWallThickness
+  - EBMWidth
+ catproduct:
+  - EBMDiameter
+  - EBMEspritNode
+  - EBMHeatTreatment
+  - EBMHeight
+  - EBMIdentNumber
+  - EBMIsMethodPlan
+  - EBMIsStandartPart
+  - EBMLength
+  - EBMMass
+  - EBMMaterialCode
+  - EBMOrderNumber
+  - EBMPreviousOwner
+  - EBMProjectNumber
+  - EBMWallThickness
+  - EBMWidth
+ catdrawing:
+  - EBMPreviousOwner

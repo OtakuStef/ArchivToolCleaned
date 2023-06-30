@@ -1,0 +1,11 @@
+server:
+ port: 12000
+
+spring:
+ main:
+  web-application-type: servlet
+ config:
+  import:
+   - mssql/mssql-config.yml
+   - experienceLogin/experience-config.yml
+   - attributeExport/attribute-names.yml
