@@ -6,14 +6,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
-
-import com.fasterxml.jackson.databind.deser.std.StringArrayDeserializer;
 
 import at.ebm.ArchivtoolBackend.entity.DatabaseAttributes;
 import at.ebm.ArchivtoolBackend.entity.EnoviaAttributes;
@@ -76,7 +73,7 @@ public class AttributeExporterImpl implements AttributeExporter {
 			res=mql.getResult().trim();
 
 		} catch (MatrixException e) {
-			log.error("Error at executing MQL command" + e.getMessage());
+			log.error("Error at executing MQL command: " + e.getMessage());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Error at executing MQL command");
 		}
 		
@@ -85,14 +82,8 @@ public class AttributeExporterImpl implements AttributeExporter {
 		
 	}
 
-	@Override
-	public void exportSpecific(Context ctx) {
-		// TODO Auto-generated method stub
-		// Function may be needed in the future
-		
-	}
 	
-	private List<String> buildQueryParameter(String type, List<Object> basicAttributes, List<Object> typeAttributes) {
+	public List<String> buildQueryParameter(String type, List<Object> basicAttributes, List<Object> typeAttributes) {
 		List<String> mqlQueryParameter = new ArrayList<String>();
 		
 		mqlQueryParameter.add(type);
@@ -113,8 +104,9 @@ public class AttributeExporterImpl implements AttributeExporter {
 		return mqlQueryParameter;
 	}
 	
-	private StringBuilder buildAttributeQuery(int parameterSize) {
+	public StringBuilder buildAttributeQuery(int parameterSize) {
 		StringBuilder mqlAttributeQuerySB = new StringBuilder();
+		if (parameterSize < 5) return mqlAttributeQuerySB;
 		
 		mqlAttributeQuerySB.append("temp query bus $1 $2 $3 select");
 		
@@ -133,7 +125,7 @@ public class AttributeExporterImpl implements AttributeExporter {
 		return mqlAttributeQuerySB;
 	}
 	
-	private List<DatabaseAttributes> resultToDatabaseConverter(Context ctx, String type, List<Object> basicAttributes, List<Object> typeAttributes, String stringResult){
+	public List<DatabaseAttributes> resultToDatabaseConverter(Context ctx, String type, List<Object> basicAttributes, List<Object> typeAttributes, String stringResult){
 		List<DatabaseAttributes> databaseAttributeList = new ArrayList<DatabaseAttributes>();
 		for (String line : stringResult.split(sepRecord)) {
 			Map<String, String> attributeMap = new HashMap<String, String>();

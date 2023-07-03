@@ -8,6 +8,5 @@ import matrix.db.Context;
 public interface AttributeExporter {
 
 	public List<DatabaseAttributes> exportAll(Context ctx, String type);
-	
-	public void exportSpecific(Context ctx);
+
 }
